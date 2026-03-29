@@ -3,124 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nena Cardoso</title>
+  <title>Moema Cardoso</title>
   <style>
+    /* Reset básico para evitar margens estranhas */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       text-align: center;
-      background: url("cyber-circuit-future-technology-concept-background_42077-6920.avif") no-repeat center/cover;
+      /* Dica: Verifique se o caminho da imagem está correto no seu projeto */
+      background: #1a1a1a url("cyber-circuit-future-technology-concept-background_42077-6920.avif") no-repeat center/cover;
+      background-attachment: fixed; /* Mantém o fundo fixo ao rolar */
       color: #fff;
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: 'Helvetica', 'Arial', sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      transition: color 0.3s ease;
+      cursor: default;
     }
 
     p {
       font-size: 22px;
+      margin-bottom: 30px;
     }
 
+    /* Formulário */
     form {
       margin: 20px auto;
       max-width: 300px;
     }
 
     input {
-      border: 0;
-      padding: 10px;
-      font-size: 18px;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
       width: 100%;
-      box-sizing: border-box;
       margin-bottom: 10px;
+      border-radius: 5px;
     }
 
     input[type="submit"] {
-      background: red;
+      background: #ff0000;
       color: white;
+      font-weight: bold;
       cursor: pointer;
-    }
-
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #ccc;
-    }
-
-    ul {
-      padding: 0;
-      margin: 20px auto;
-      max-width: 200px;
-      text-align: left;
-    }
-
-    li {
-      font-size: 18px;
-      list-style: none;
-      color: white;
-      border-left: 4px solid red;
-      padding-left: 10px;
-      margin: 10px 0;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    /* hover styles */
-    li:hover {
-      background: rgba(255,255,255,0.1);
-      color: #ff0;
-      cursor: pointer;
+      transition: background 0.3s;
     }
 
     input[type="submit"]:hover {
       background: #cc0000;
     }
 
+    /* Imagem de Perfil */
+    img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ccc;
+      transition: transform 0.3s ease;
+      margin-bottom: 10px;
+    }
+
     img:hover {
       transform: scale(1.1);
-      transition: transform 0.3s;
+    }
+
+    /* Lista de Skills */
+    ul {
+      padding: 0;
+      margin: 20px auto;
+      max-width: 250px;
+      list-style: none;
+    }
+
+    li {
+      font-size: 18px;
+      color: white;
+      border-left: 4px solid red;
+      padding: 10px 15px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    li:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ff0;
+      transform: translateX(10px);
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <img src="IMG_20201117_134126_321.jpg" alt="Foto de Nena Cardoso">
-  <h1><em>Nena Cardoso</em></h1>
-  <p>Aspirante a Desenvolvedora Full‑stack</p>
 
-  <form action="#" method="post">
-    <input type="email" name="email" placeholder="Seu e‑mail" required>
+  <img src="IMG_20201117_134126_321.jpg" alt="Foto de Nena Cardoso">
+  
+  <h1><em>Moema Cardoso</em></h1>
+  <p>Desenvolvedora Front-end junior!</p>
+
+  <form id="subscribeForm" action="#" method="post">
+    <label for="email" style="display:none;">E-mail:</label>
+    <input type="email" id="email" name="email" placeholder="Seu e-mail profissional" required>
     <input type="submit" value="Inscrever-se">
   </form>
 
-  <h3>Minhas Skills</h3>
-  <ul>
-    <li>HTML</li>
-    <li>CSS</li>
-    <li>JavaScript</li>
-  </ul>
+  <section>
+    <h3>Minhas Skills</h3>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+  </section>
 
   <script>
-    // mostra agradecimento ao enviar o formulário
-    document.querySelector('form').addEventListener('submit', function(e) {
+    // 1. Script de submissão do formulário
+    const form = document.querySelector('#subscribeForm');
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('Obrigado por se inscrever!');
+      const email = document.querySelector('#email').value;
+      alert(`Obrigado por se inscrever, ${email}!`);
+      form.reset(); // Limpa o campo após o envio
     });
 
-    // adiciona clique interativo nas skills
-    document.querySelectorAll('li').forEach(function(item) {
-      item.addEventListener('click', function() {
-        alert('Você clicou em ' + this.textContent + '!');
+    // 2. Clique interativo nas skills
+    const skills = document.querySelectorAll('li');
+    skills.forEach(item => {
+      item.addEventListener('click', () => {
+        alert(`Você quer saber mais sobre ${item.textContent}?`);
       });
     });
 
-    // muda cor do título ao passar o mouse
+    // 3. Efeito no título (Hover via JS)
     const title = document.querySelector('h1');
-    title.addEventListener('mouseover', function() {
-      this.style.color = '#ff0';
+    title.addEventListener('mouseenter', () => {
+      title.style.color = '#ff0';
     });
-    title.addEventListener('mouseout', function() {
-      this.style.color = '';
+    title.addEventListener('mouseleave', () => {
+      title.style.color = ''; // Retorna ao padrão do CSS
     });
   </script>
+
 </body>
-
 </html>
-
